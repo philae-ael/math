@@ -3,3 +3,4 @@
 pub mod graphic;
 pub mod dim2;
 pub mod dim4;
+pub mod rand;
