@@ -32,6 +32,15 @@ impl Vec4 {
     pub fn into_array(self) -> [f32; 4] {
         unsafe { std::mem::transmute(self.0) }
     }
+
+    pub fn length_squared(self) -> f32 {
+        let [x, y, z, w] = self.component_mul(self).into_array();
+        x + y + z + w
+    }
+
+    pub fn length(self) -> f32 {
+        self.length_squared().sqrt()
+    }
 }
 
 impl Mat4 {
@@ -152,6 +161,22 @@ impl std::ops::Mul<f32> for Vec4 {
 
     fn mul(self, rhs: f32) -> Self::Output {
         Vec4::splat(rhs).component_mul(self)
+    }
+}
+
+impl std::ops::Sub for Vec4 {
+    type Output = Self;
+
+    fn sub(self, rhs: Self) -> Self::Output {
+        Vec4(self.0 - rhs.0)
+    }
+}
+
+impl std::ops::Neg for Vec4 {
+    type Output = Self;
+
+    fn neg(self) -> Self::Output {
+        Vec4(-self.0)
     }
 }
 
