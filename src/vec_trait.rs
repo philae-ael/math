@@ -43,6 +43,22 @@ macro_rules! VectorImpls {
             }
         }
 
+        impl std::ops::Mul<f32> for $v {
+            type Output = Self;
+
+            fn mul(self, other: f32) -> Self::Output {
+                Vector::component_mul(self, Vector::splat(other))
+            }
+        }
+
+        impl std::ops::Mul<$v> for f32 {
+            type Output = $v;
+
+            fn mul(self, other: $v) -> Self::Output {
+                Vector::component_mul(Vector::splat(self), other)
+            }
+        }
+
         impl std::ops::Index<usize> for $v {
             type Output = f32;
 

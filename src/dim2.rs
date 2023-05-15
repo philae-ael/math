@@ -20,6 +20,9 @@ impl Vec2 {
     pub fn x(self) -> f32 {
         self[0]
     }
+    pub fn y(self) -> f32 {
+        self[1]
+    }
 }
 
 impl crate::Vector<2> for Vec2 {

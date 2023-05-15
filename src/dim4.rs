@@ -16,6 +16,18 @@ impl Vec4 {
     pub fn from_components(x: f32, y: f32, z: f32, w: f32) -> Self {
         Self::from_array([x, y, z, w])
     }
+    pub fn x(self) -> f32 {
+        self[0]
+    }
+    pub fn y(self) -> f32 {
+        self[1]
+    }
+    pub fn z(self) -> f32 {
+        self[2]
+    }
+    pub fn w(self) -> f32 {
+        self[3]
+    }
 }
 
 impl Vector<4> for Vec4 {
