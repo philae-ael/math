@@ -1,6 +1,6 @@
 use rand::prelude::Distribution;
 
-use crate::{dim2::Vec2, dim4::Vec4};
+use crate::{dim2::Vec2, dim4::Vec4, Vector};
 
 pub struct Vec2Uniform {
     inner_x: rand::distributions::Uniform<f32>,

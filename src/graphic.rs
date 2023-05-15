@@ -1,6 +1,6 @@
 use std::simd::f32x4;
 
-use crate::dim4::{Mat4, Vec4};
+use crate::{dim4::{Mat4, Vec4}, Vector, Matrix};
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct Point3(Vec4);
