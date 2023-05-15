@@ -8,6 +8,7 @@ pub mod rand;
 
 mod mat_trait;
 mod vec_trait;
+pub mod graph;
 
 pub use mat_trait::Matrix;
 pub use vec_trait::Vector;
