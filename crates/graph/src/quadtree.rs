@@ -1,4 +1,4 @@
-use crate::{dim2::Vec2, Vector};
+use vector::{dim2::Vec2, Vector};
 
 #[derive(Debug, Clone, Copy)]
 pub struct Extent {

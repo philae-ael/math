@@ -74,11 +74,11 @@ impl Matrix<4> for Mat4 {
     type VecDIM = Vec4;
 
     fn add(self, other: Self) -> Self {
-        Self(self.0.zip(other.0).map(|(a, b)| a + b))
+        Self(std::array::from_fn(|i| self.0[i] + other.0[i]))
     }
 
     fn sub(self, other: Self) -> Self {
-        Self(self.0.zip(other.0).map(|(a, b)| a - b))
+        Self(std::array::from_fn(|i| self.0[i] - other.0[i]))
     }
 
     fn neg(self) -> Self {
@@ -109,11 +109,9 @@ impl Matrix<4> for Mat4 {
     }
 
     fn vec_mul(vec: Self::VecDIM, this: Self) -> Self::VecDIM {
+        let v = vec.into_array().map(f32x4::splat);
         Vec4(
-            vec.into_array()
-                .map(f32x4::splat)
-                .zip(this.0)
-                .map(|(a, b)| a * b)
+            std::array::from_fn::<_, 4, _>(|i| v[i] * this.0[i])
                 .into_iter()
                 .sum(),
         )

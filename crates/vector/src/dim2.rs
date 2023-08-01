@@ -85,11 +85,11 @@ impl crate::Matrix<2> for Mat2 {
     }
 
     fn add(self, other: Self) -> Self {
-        Self(self.0.zip(other.0).map(|(a, b)| a + b))
+        Self(std::array::from_fn(|i| self.0[i] + other.0[i]))
     }
 
     fn sub(self, other: Self) -> Self {
-        Self(self.0.zip(other.0).map(|(a, b)| a - b))
+        Self(std::array::from_fn(|i| self.0[i] - other.0[i]))
     }
 
     fn neg(self) -> Self {
@@ -97,11 +97,9 @@ impl crate::Matrix<2> for Mat2 {
     }
 
     fn vec_mul(vec: Self::VecDIM, this: Self) -> Self::VecDIM {
+        let v = vec.into_array().map(f32x2::splat);
         Vec2(
-            vec.into_array()
-                .map(f32x2::splat)
-                .zip(this.0)
-                .map(|(a, b)| a * b)
+            std::array::from_fn::<_, 2, _>(|i| v[i] * this.0[i])
                 .into_iter()
                 .sum(),
         )
